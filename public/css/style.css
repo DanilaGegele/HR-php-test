@@ -1,0 +1,6 @@
+body{
+    padding-top: 70px !important;
+}
+.weather h3, .weather p{
+    text-align: center;
+}

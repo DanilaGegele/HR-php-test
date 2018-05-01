@@ -12,5 +12,10 @@
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('main');
+});
+
+Route::get('/weather/{location?}', function ($location='') {
+	$controller=new \App\Http\Controllers\WeatherController();
+	return $controller->index($location);
 });
