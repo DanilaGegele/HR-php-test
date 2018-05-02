@@ -5,10 +5,10 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <script type="text/javascript" src="../js/app.js"></script>
-    <script type="text/javascript" src="../js/script.js"></script>
-    <link href="../css/style.css" rel="stylesheet"/>
-    <link href="../css/app.css" rel="stylesheet"/>
+    <script type="text/javascript" src="/js/app.js"></script>
+    <script type="text/javascript" src="/js/script.js"></script>
+    <link href="/css/style.css" rel="stylesheet"/>
+    <link href="/css/app.css" rel="stylesheet"/>
 
 
 </head>
@@ -18,7 +18,7 @@
         <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
             <ul class="nav navbar-nav">
                 <li><a href="/weather">Погода</a></li>
-                <li><a href="#">Link</a></li>
+                <li><a href="/orders">Заказы</a></li>
 
             </ul>
         </div>

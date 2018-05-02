@@ -15,7 +15,10 @@ Route::get('/', function () {
     return view('main');
 });
 
-Route::get('/weather/{location?}', function ($location='') {
-	$controller=new \App\Http\Controllers\WeatherController();
-	return $controller->index($location);
-});
+Route::get('/weather', 'WeatherController@index');
+
+Route::get('/orders', 'OrderController@index');
+
+Route::get('/order/{id}/edit', 'OrderController@edit');
+
+Route::post('/order/{id}/update', 'OrderController@store');
