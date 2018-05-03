@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Mail\OrderCompleted;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Mail;
 use App\Order;
@@ -18,7 +19,29 @@ class OrderController extends Controller
     public function index()
     {
     	$orders=Order::all();
-	    return view('orders', ['orders'=>$orders, ]);
+    	$expired=$orders->where('status',STATE_CONFIRMED)
+		    ->filter(function($item){$date=Carbon::now()->format('Y-m-d H:i:s'); return $item->delivery_dt < $date;})
+		    ->sortByDesc('delivery_dt')
+		    ->take(50);
+
+		$current=$orders->where('status', STATE_CONFIRMED)
+			->filter(function($item){$date_to = Carbon::now()->addDay()->format('Y-m-d H:i:s'); return $item->delivery_dt<$date_to;})
+			->filter(function($item){$date_from = Carbon::now()->format('Y-m-d H:i:s'); return $item->delivery_dt>=$date_from;})
+			->sortBy('delivery_dt');
+
+    	$new=$orders->where('status',STATE_NEW)
+		    ->filter(function($item){$date=Carbon::now()->format('Y-m-d H:i:s'); return $item->delivery_dt > $date;})
+		    ->sortBy('delivery_dt')
+	        ->take(50);
+
+
+    	$completed=$orders->where('status',STATE_COMPLETED)
+		        ->filter(function($item){$date_from = Carbon::today()->format('Y-m-d H:i:s');return $item->delivery_dt>=$date_from;})
+		        ->filter(function($item){$date_to = Carbon::tomorrow()->subSecond()->format('Y-m-d H:i:s');return $item->delivery_dt<$date_to;})
+				->sortByDesc('delivery_dt')
+				->take(50);
+
+	    return view('orders', ['orders'=>$orders, 'new'=>$new, 'completed'=>$completed, 'current'=>$current, 'expired'=>$expired,]);
     }
     public function edit($id)
     {
