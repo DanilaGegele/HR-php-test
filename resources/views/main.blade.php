@@ -19,7 +19,7 @@
             <ul class="nav navbar-nav">
                 <li><a href="/weather">Погода</a></li>
                 <li><a href="/orders">Заказы</a></li>
-
+                <li><a href="/products">Продукты</a></li>
             </ul>
         </div>
     </div>

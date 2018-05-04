@@ -4,3 +4,4 @@ body{
 .weather h3, .weather p{
     text-align: center;
 }
+.price-edit{display:none;}

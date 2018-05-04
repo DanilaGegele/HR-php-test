@@ -7,7 +7,7 @@ use App\Http\Libs\WorldWeatherOnline;
 
 class WeatherController extends Controller
 {
-    public function index($location){
+    public function index(){
         $weather=new WorldWeatherOnline('json');
         $weather->setLocation('Брянск');
         $error='';

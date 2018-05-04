@@ -22,3 +22,7 @@ Route::get('/orders', 'OrderController@index');
 Route::get('/order/{id}/edit', 'OrderController@edit');
 
 Route::post('/order/{id}/update', 'OrderController@store');
+
+Route::get('/products','ProductController@index');
+
+Route::get('/products/price-edit', 'ProductController@priceEdit');
