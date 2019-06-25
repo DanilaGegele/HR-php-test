@@ -22,13 +22,26 @@
         </table>
 
     </div>
+
 </template>
 
 <script>
+    import Paginate from "laravel-vue-pagination";
+
     export default {
-        name: "fulfilled",
+        components: {Paginate},
+        name: "listOrder",
         props: ['listOrder'],
+        computed: {
+
+        },
         methods: {
+            /**
+             * Вывести читаемое название статуса
+             *
+             * @param status
+             * @return {*}
+             */
             getStatus: function (status) {
                 let arStatus = {
                     0: 'новый',
@@ -36,7 +49,9 @@
                     20: 'завершен',
                 };
                 return arStatus[status];
-            }
+            },
+
+
         }
     }
 </script>

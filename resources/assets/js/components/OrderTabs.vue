@@ -52,6 +52,9 @@
                                 <OrderList v-if="activeTab === 'Fulfilled'"
                                            :listOrder=listOrder></OrderList>
                             </div>
+                            <Paginate
+                                    :data="listOrder"
+                                    @pagination-change-page="getResults"></Paginate>
                         </div>
                     </div>
                 </div>
@@ -63,13 +66,17 @@
 <script>
     import axios from 'axios';
     import OrderList from "./OrderList";
+    import Paginate from "laravel-vue-pagination";
 
     export default {
-        components: {OrderList},
+        components: {
+            OrderList,
+            Paginate
+        },
         data() {
             return {
                 activeTab: '',
-                listOrder: []
+                listOrder: {}
             }
         },
         methods: {
@@ -85,6 +92,22 @@
                         }
                     });
             },
+            /**
+             * Измениние пагинации
+             *
+             * @param page
+             */
+            getResults: function (page = 1) {
+                let app = this;
+                axios.get(this.listOrder.path+'?page=' + page)
+                    .then(response => {
+                        if(response.data.data){
+                            app.listOrder = response.data;
+                        } else {
+                            app.listOrder = response;
+                        }
+                    });
+            }
         }
 
     }

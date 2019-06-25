@@ -63,7 +63,7 @@ class OrderContainer
                 $this->order->getTable() . '.id',
                 $this->partner->getTable() . '.name as name_partner',
                 DB::raw('sum(' . $this->orderProduct->getTable() . '.price) * sum(' . $this->orderProduct->getTable() . '.quantity) as `sum`'),
-                DB::raw('GROUP_CONCAT(' . $this->product->getTable() . '.name) as `products`'),
+                DB::raw('GROUP_CONCAT(' . $this->product->getTable() . '.name SEPARATOR ", ") as `products`'),
                 $this->order->getTable() . '.status',
                 $this->order->getTable() . '.delivery_dt',
             ]);
