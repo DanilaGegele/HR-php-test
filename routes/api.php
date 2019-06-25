@@ -44,4 +44,23 @@ Route::group(['prefix' => '/v1', 'as' => 'api.*', 'namespace' => 'Api\v1'], func
         'uses' => 'OrderController@loadOrderFulfilled',
     ]);
 
+    // Вывод данных по определённому заказу
+    Route::get('/getOrder/{id}', [
+        'as' => 'getOrder',
+        'uses' => 'OrderController@getOrder',
+    ]);
+
+
+    // Вывод списка партнёров
+    Route::get('/getPartnersList', [
+        'as' => 'getPartnersList',
+        'uses' => 'PartnersController@getPartnersList',
+    ]);
+
+    // Вывод списка товаров
+    Route::get('/getProductList', [
+        'as' => 'getProductList',
+        'uses' => 'ProductController@getProductList',
+    ]);
+
 });

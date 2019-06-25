@@ -14,22 +14,22 @@ class OrderContainer
     /**
      * @var Order
      */
-    private $order;
+    protected $order;
 
     /**
      * @var Partner
      */
-    private $partner;
+    protected $partner;
 
     /**
      * @var OrderProduct
      */
-    private $orderProduct;
+    protected $orderProduct;
 
     /**
      * @var Product
      */
-    private $product;
+    protected $product;
 
 
     public function __construct(Order $order,
@@ -44,44 +44,37 @@ class OrderContainer
     }
 
     /**
-     *   Вывести данные о заказах, решил соединить через join
-     *      т.к. стандартные связь делает много запросов к базе данных
-     *
-     *   @return \Illuminate\Database\Query\Builder
+     * @return Partner
      */
-    public function getOrderList()
+    public function getPartner(): Partner
     {
-        return DB::table($this->order->getTable())
-            ->join($this->partner->getTable(),
-                $this->order->getTable() . '.partner_id', '=', $this->partner->getTable() . '.id')// добавляем таблицу партнёры
-            ->join($this->orderProduct->getTable(),
-                $this->orderProduct->getTable() . '.order_id', '=', $this->order->getTable() . '.id')// добавляем таблицу содержание заказа
-            ->join($this->product->getTable(),
-                $this->orderProduct->getTable() . '.product_id', '=', $this->product->getTable() . '.id')// добавляем таблицу продукты
-            ->groupBy($this->order->getTable() . '.id')
-            ->select([
-                $this->order->getTable() . '.id',
-                $this->partner->getTable() . '.name as name_partner',
-                DB::raw('sum(' . $this->orderProduct->getTable() . '.price) * sum(' . $this->orderProduct->getTable() . '.quantity) as `sum`'),
-                DB::raw('GROUP_CONCAT(' . $this->product->getTable() . '.name SEPARATOR ", ") as `products`'),
-                $this->order->getTable() . '.status',
-                $this->order->getTable() . '.delivery_dt',
-            ]);
+        return $this->partner;
     }
-
 
     /**
-     * Обновить данные заказа
-     *
-     * @param int $id
-     * @param array $params
-     * @return int
+     * @return Product
      */
-    public function updateOrder(int $id, array $params)
+    public function getProduct(): Product
     {
-        return $this->order
-            ->where($this->order->getTable() . '.id', '=', $id)
-            ->update($params);
+        return $this->product;
     }
+
+    /**
+     * @return Order
+     */
+    public function getOrder(): Order
+    {
+        return $this->order;
+    }
+
+    /**
+     * @return OrderProduct
+     */
+    public function getOrderProduct(): OrderProduct
+    {
+        return $this->orderProduct;
+    }
+
+
 
 }

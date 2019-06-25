@@ -10,11 +10,13 @@
 | contains the "web" middleware group. Now create something great!
 |
 */
-
-Route::get('/', function () {
+/**
+ * Загрузать vue компонент
+ */
+Route::get('/{vue_capture?}', function () {
     return view('home');
-});
+})->where('vue_capture', '^(?!(?:api))[\/\w\.-]*');
 
 Auth::routes();
 
-Route::get('/home', 'HomeController@index')->name('home');
+

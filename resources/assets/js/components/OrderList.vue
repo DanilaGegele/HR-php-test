@@ -12,7 +12,11 @@
             </thead>
             <tbody>
                 <tr v-for="item in listOrder.data">
-                    <th scope="row">{{item.id}}</th>
+                    <td scope="row">
+                        <router-link :to="'/editOrder/'+item.id">
+                            {{item.id}}
+                        </router-link>
+                    </td>
                     <td>{{item.name_partner}}</td>
                     <td>{{item.sum}}</td>
                     <td>{{item.products}}</td>

@@ -80,6 +80,11 @@
             }
         },
         methods: {
+            /**
+             * Загрузка данных для вкладки заказов
+             *
+             * @param type
+             **/
             loadOrder(type) {
                 let app = this;
                 axios.get('/api/v1/loadOrder'+type)

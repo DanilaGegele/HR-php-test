@@ -20,7 +20,7 @@ let routes = [
         name: 'root'
     },
     {
-        path: '/editOrder',
+        path: '/editOrder/:id',
         component: EditOrder,
         name: 'EditOrder'
     }
