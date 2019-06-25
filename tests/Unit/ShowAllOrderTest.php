@@ -7,10 +7,10 @@ use Tests\TestCase;
 //use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Container\Container;
 
-class ShowOrderTest extends TestCase
+class ShowAllOrderTest extends TestCase
 {
 
-    protected $orderList;
+    private $orderList;
 
 
     protected function setUp()
@@ -46,6 +46,4 @@ class ShowOrderTest extends TestCase
         $this->assertArrayHasKey('name_partner', $arOrderList);
         $this->assertArrayHasKey('status', $arOrderList);
     }
-
-
 }

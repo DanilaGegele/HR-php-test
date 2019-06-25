@@ -26,7 +26,11 @@ class OrderContainer
      */
     private $orderProduct;
 
+    /**
+     * @var Product
+     */
     private $product;
+
 
     public function __construct(Order $order,
                                 Partner $partner,
@@ -42,6 +46,7 @@ class OrderContainer
     /**
      *   Вывести данные о заказах, решил соединить через join
      *      т.к. стандартные связь делает много запросов к базе данных
+     *
      *   @return \Illuminate\Database\Query\Builder
      */
     public function getOrderList()
@@ -60,8 +65,23 @@ class OrderContainer
                 DB::raw('sum(' . $this->orderProduct->getTable() . '.price) * sum(' . $this->orderProduct->getTable() . '.quantity) as `sum`'),
                 DB::raw('GROUP_CONCAT(' . $this->product->getTable() . '.name) as `products`'),
                 $this->order->getTable() . '.status',
+                $this->order->getTable() . '.delivery_dt',
             ]);
     }
 
+
+    /**
+     * Обновить данные заказа
+     *
+     * @param int $id
+     * @param array $params
+     * @return int
+     */
+    public function updateOrder(int $id, array $params)
+    {
+        return $this->order
+            ->where($this->order->getTable() . '.id', '=', $id)
+            ->update($params);
+    }
 
 }

@@ -1,0 +1,45 @@
+.main-header {
+    position: relative;
+    max-height: 120px;
+    z-index: 1030;
+    -webkit-box-shadow: 5px 0px 10px rgba(0, 0, 0, 0.5);
+    box-shadow: 5px 0px 10px rgba(0, 0, 0, 0.5);
+    height: 50px;
+    border-bottom-width: 50px;
+    margin-bottom: 50px;
+}
+.main-nav .navbar {
+    box-shadow: none;
+}
+.navbar {
+    min-height: 4.715rem;
+    padding: 0;
+    border: none;
+    -webkit-box-shadow: 0 1px 4px 0 rgba(0, 0, 0, .1);
+    box-shadow: 0 1px 4px 0 rgba(0, 0, 0, .1);
+}
+
+.navbar-nav {
+    float: left;
+    margin: 0;
+    list-style: none;
+}
+
+.nav-link {
+    display: block;
+    padding: 0.5rem 1rem;
+}
+
+.navbar-nav > .nav-item > .nav-link {
+    padding-top: 1.5715rem;
+    padding-bottom: 1.5715rem;
+}
+.navbar-nav > .nav-item {
+    float: left;
+}
+
+.navbar-collapse::after {
+    display: block;
+    clear: both;
+    content: '';
+}

@@ -6,7 +6,7 @@
  */
 
 require('./bootstrap');
-
+import VueRouter from 'vue-router';
 window.Vue = require('vue');
 
 /**
@@ -16,7 +16,14 @@ window.Vue = require('vue');
  */
 
 Vue.component('example', require('./components/Example.vue'));
+Vue.component('menu-site', require('./components/Menu.vue'));
+
+import router from './router.js';
+Vue.use(VueRouter);
+
 
 const app = new Vue({
-    el: '#app'
-});
+    router
+}).$mount('#app');
+
+export default app;

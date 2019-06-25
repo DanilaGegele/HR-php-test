@@ -1,6 +1,8 @@
 <?php
 
+use Illuminate\Container\Container;
 use Illuminate\Http\Request;
+use App\Container\OrderContainer;
 
 /*
 |--------------------------------------------------------------------------
@@ -12,7 +14,34 @@ use Illuminate\Http\Request;
 | is assigned the "api" middleware group. Enjoy building your API!
 |
 */
-
 Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
+});
+
+
+Route::group(['prefix' => '/v1', 'as' => 'api.*', 'namespace' => 'Api\v1'], function () {
+    // Вывод списка просроченных заказов
+    Route::get('/loadOrderOverdue', [
+        'as' => 'loadOrderOverdue',
+        'uses' => 'OrderController@loadOrderOverdue',
+    ]);
+
+    // Вывод списка текущие заказов
+    Route::get('/loadOrderCurrent', [
+        'as' => 'loadOrderCurrent',
+        'uses' => 'OrderController@loadOrderCurrent',
+    ]);
+
+    // Вывод списка новых заказов
+    Route::get('/loadOrderNew', [
+        'as' => 'loadOrderNew',
+        'uses' => 'OrderController@loadOrderNew',
+    ]);
+
+    // Вывод списка выполненных заказов
+    Route::get('/loadOrderFulfilled', [
+        'as' => 'loadOrderFulfilled',
+        'uses' => 'OrderController@loadOrderFulfilled',
+    ]);
+
 });

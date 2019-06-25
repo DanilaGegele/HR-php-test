@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "506f30199ade513ffd6e6b11973c87b9",
+    "content-hash": "67b4b3d6d75186b6f97e72a4be11c63f",
     "packages": [
         {
             "name": "dnoegel/php-xdg-base-dir",
@@ -1303,6 +1303,54 @@
                 "uuid"
             ],
             "time": "2017-08-04T13:39:04+00:00"
+        },
+        {
+            "name": "sleeping-owl/with-join",
+            "version": "1.0.11",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/sleeping-owl/with-join.git",
+                "reference": "ea58bd3601c271d775cfb4e291383b00d535251c"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/sleeping-owl/with-join/zipball/ea58bd3601c271d775cfb4e291383b00d535251c",
+                "reference": "ea58bd3601c271d775cfb4e291383b00d535251c",
+                "shasum": ""
+            },
+            "require": {
+                "illuminate/support": ">=4.1",
+                "laravel/framework": ">=5.0.6",
+                "php": ">=5.4.0"
+            },
+            "require-dev": {
+                "illuminate/database": ">=4.1"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-0": {
+                    "SleepingOwl\\WithJoin": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Sleeping Owl",
+                    "email": "owl.sleeping@yahoo.com"
+                }
+            ],
+            "description": "Package to convert Eloquent BelongsTo subqueries into one query with left join.",
+            "keywords": [
+                "activerecord",
+                "eloquent",
+                "join",
+                "laravel",
+                "with"
+            ],
+            "time": "2015-02-21T13:48:34+00:00"
         },
         {
             "name": "swiftmailer/swiftmailer",
@@ -3665,6 +3713,7 @@
                 "mock",
                 "xunit"
             ],
+            "abandoned": true,
             "time": "2017-08-03T14:08:16+00:00"
         },
         {
