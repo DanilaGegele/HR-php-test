@@ -17,9 +17,9 @@
                             {{item.id}}
                         </router-link>
                     </td>
-                    <td>{{item.name_partner}}</td>
-                    <td>{{item.sum}}</td>
-                    <td>{{item.products}}</td>
+                    <td>{{item.partner.name}}</td>
+                    <td>{{getSum(item.product)}}</td>
+                    <td>{{getProduct(item.product)}}</td>
                     <td>{{getStatus(item.status)}}</td>
                 </tr>
             </tbody>
@@ -44,7 +44,7 @@
              * Вывести читаемое название статуса
              *
              * @param status
-             * @return {*}
+             * @return {string}
              */
             getStatus: function (status) {
                 let arStatus = {
@@ -54,8 +54,35 @@
                 };
                 return arStatus[status];
             },
-
-
+            /**
+             * Вывести сумму
+             *
+             * @param products <array>
+             * @return {number}
+             */
+            getSum: function (products) {
+                let sum = 0;
+                products.forEach(function(element) {
+                    sum+= element.pivot.price * element.pivot.quantity;
+                });
+                return sum;
+            },
+            /**
+             * Вывести список продуктов
+             *
+             * @param products
+             * @return {string}
+             */
+            getProduct(products) {
+                let productsList = '';
+                products.forEach(function(element, index) {
+                    productsList = productsList + element.name;
+                    if(index < products.length) {
+                        productsList = productsList + ',';
+                    }
+                });
+                return productsList;
+            },
         }
     }
 </script>

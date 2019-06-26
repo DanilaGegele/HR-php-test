@@ -3,6 +3,7 @@
 namespace Tests\Unit;
 
 use App\Container\OrderContainer;
+use App\Container\OrderList;
 use App\Order;
 use Tests\TestCase;
 //use Illuminate\Foundation\Testing\RefreshDatabase;
@@ -21,7 +22,7 @@ class ShowOrderTabsTest extends TestCase
     {
         parent::setUp();
         $order = Container::getInstance()
-            ->make(OrderContainer::class);
+            ->make(OrderList::class);
         $this->orderList = $order->getOrderList();
     }
 

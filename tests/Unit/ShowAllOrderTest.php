@@ -3,6 +3,7 @@
 namespace Tests\Unit;
 
 use App\Container\OrderContainer;
+use App\Container\OrderList;
 use Tests\TestCase;
 //use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Container\Container;
@@ -17,7 +18,7 @@ class ShowAllOrderTest extends TestCase
     {
         parent::setUp();
         $order = Container::getInstance()
-            ->make(OrderContainer::class);
+            ->make(OrderList::class);
         $this->orderList = $order->getOrderList()->get();
     }
 
@@ -40,10 +41,10 @@ class ShowAllOrderTest extends TestCase
      */
     public function testCorrectKeysByOrderList()
     {
-        $arOrderList = (array)$this->orderList[0];
-        $this->assertArrayHasKey('products', $arOrderList);
-        $this->assertArrayHasKey('sum', $arOrderList);
-        $this->assertArrayHasKey('name_partner', $arOrderList);
+        $arOrderList = $this->orderList[0]->toArray();
+        $this->assertArrayHasKey('partner', $arOrderList);
+        $this->assertArrayHasKey('product', $arOrderList);
+        $this->assertArrayHasKey('pivot', $arOrderList['product'][0]);
         $this->assertArrayHasKey('status', $arOrderList);
     }
 }

@@ -7,7 +7,6 @@ use App\Order;
 use App\OrderProduct;
 use App\Partner;
 use App\Product;
-use Illuminate\Support\Facades\DB;
 
 class OrderContainer
 {
