@@ -9,6 +9,11 @@
                                          to="/">
                                 <span class="active-item-here"></span><i class="fa fa-dashboard mr-5"></i> <span>Список заказов</span>
                             </router-link>
+                            <router-link class="nav-item"
+                                     active-class="active"
+                                     to="/editProduct">
+                                <span class="active-item-here"></span><i class="fa fa-dashboard mr-5"></i> <span>Список продуктов</span>
+                            </router-link>
                     </ul>
                     <div class="text-right">
                         Температура в Брянске {{weather}}

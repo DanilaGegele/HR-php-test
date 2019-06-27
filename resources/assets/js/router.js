@@ -3,19 +3,18 @@ import VueRouter from 'vue-router';
 
 import OrderTabs from './components/OrderTabs.vue';
 import EditOrder from './components/EditOrder.vue';
-
+import EditProduct from './components/EditProduct.vue';
 
 
 Vue.use(VueRouter);
 
 Vue.component('OrderTabs', OrderTabs);
 Vue.component('EditOrder', EditOrder);
-
-const ROOT_URL = '/';
+Vue.component('EditProduct', EditProduct);
 
 let routes = [
     {
-        path: ROOT_URL,
+        path: '/',
         component: OrderTabs,
         name: 'root'
     },
@@ -23,6 +22,11 @@ let routes = [
         path: '/editOrder/:id',
         component: EditOrder,
         name: 'EditOrder'
+    },
+    {
+        path: '/editProduct',
+        component: EditProduct,
+        name: 'EditProduct'
     }
 ];
 

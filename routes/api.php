@@ -69,6 +69,12 @@ Route::group(['prefix' => '/v1', 'as' => 'api.*', 'namespace' => 'Api\v1'], func
         'uses' => 'OrderController@updateOrder',
     ]);
 
+    // Обновить цену у продукта
+    Route::post('/updateProduct/{id}', [
+        'as' => 'updateProduct',
+        'uses' => 'ProductController@updateProduct',
+    ]);
+
     // Вывести погоду в бренске
     Route::get('/getWeather', [
         'as' => 'getWeather',

@@ -68,18 +68,6 @@ class UpdateOrderTest extends TestCase
     }
 
     /**
-     * Тест проверки вывода списка Продуктов
-     */
-    public function testGetProductList()
-    {
-        $products = $this->orderContainer
-            ->getProduct()
-            ->all();
-        $this->assertTrue(count($products) > 0);
-    }
-
-
-    /**
      * Тест проверки вывода списка партнёров
      */
     public function testGetPartnersList()

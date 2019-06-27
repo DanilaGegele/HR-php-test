@@ -53,9 +53,11 @@ class OrderContainer
     /**
      * @return Product
      */
-    public function getProduct(): Product
+    public function getProduct()
     {
-        return $this->product;
+        return $this->product::with([
+            'vendor'
+        ]);
     }
 
     /**
