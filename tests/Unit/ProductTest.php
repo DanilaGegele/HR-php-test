@@ -23,7 +23,7 @@ class ProductTest extends TestCase
     }
 
     /**
-     * Тест получение списка продуктов
+     * Тест для получения списка продуктов
      *
      * @return void
      */
@@ -36,7 +36,7 @@ class ProductTest extends TestCase
     }
 
     /**
-     * Тест получение списка продуктов
+     * Тест для обновления цены продукта
      *
      * @return void
      */

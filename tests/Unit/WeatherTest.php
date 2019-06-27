@@ -2,12 +2,13 @@
 
 namespace Tests\Unit;
 
+use App\Http\Controllers\Api\v1\WeatherController;
 use Tests\TestCase;
 
 class WeatherTest extends TestCase
 {
     /**
-     * Проверить получение погода города Брянск
+     * Проверить получение погоды города Брянск
      *
      * @return void
      */
@@ -16,12 +17,13 @@ class WeatherTest extends TestCase
         $opts = [
             "http" => [
                 "method" => "GET",
-                "header" => "X-Yandex-API-Key: 3337092d-2c6d-4694-9758-3a32ff244784"
+                "header" => "X-Yandex-API-Key: ". WeatherController::KEY_API
             ]
         ];
         $context = stream_context_create($opts);
 
-        $weather = @file_get_contents('https://api.weather.yandex.ru/v1/forecast?lat=53.2799469&lon=34.2068798&extra=true',
+        $weather = @file_get_contents('https://api.weather.yandex.ru/v1/forecast?lat='.WeatherController::COORDINATES['lat'].
+            '&lon='.WeatherController::COORDINATES['lon'].'&extra=true',
             false,
             $context);
 

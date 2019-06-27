@@ -8,9 +8,10 @@ use App\Http\Controllers\Controller;
 class WeatherController extends Controller
 {
     /**
-     * ключь от яндекс API
+     * ключ от яндекс API
      */
     const KEY_API = '3337092d-2c6d-4694-9758-3a32ff244784';
+
     /**
      * координаты Брянска
      */
@@ -20,7 +21,7 @@ class WeatherController extends Controller
     ];
 
     /**
-     * Вывести погоду брянска
+     * Вывести погоду Брянска
      *
      * @return \Illuminate\Contracts\Routing\ResponseFactory|\Symfony\Component\HttpFoundation\Response
      */

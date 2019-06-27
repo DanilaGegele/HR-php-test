@@ -8,7 +8,7 @@ class OrderList extends OrderContainer
 
 
     /**
-     *  Вывожу заказы со всеми зависимости
+     *  Вывести заказы со всеми зависимостями
      *
      * @return \Illuminate\Database\Query\Builder
      */

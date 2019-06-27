@@ -20,38 +20,38 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 
 
 Route::group(['prefix' => '/v1', 'as' => 'api.*', 'namespace' => 'Api\v1'], function () {
-    // Вывод списка просроченных заказов
+    // Вывод списка "Просроченные заказы"
     Route::get('/loadOrderOverdue', [
         'as' => 'loadOrderOverdue',
         'uses' => 'OrderController@loadOrderOverdue',
     ]);
 
-    // Вывод списка текущие заказов
+    // Вывод списка "Текущие заказы"
     Route::get('/loadOrderCurrent', [
         'as' => 'loadOrderCurrent',
         'uses' => 'OrderController@loadOrderCurrent',
     ]);
 
-    // Вывод списка новых заказов
+    // Вывод списка "Новые заказы"
     Route::get('/loadOrderNew', [
         'as' => 'loadOrderNew',
         'uses' => 'OrderController@loadOrderNew',
     ]);
 
-    // Вывод списка выполненных заказов
+    // Вывод списка "Выполненные заказы"
     Route::get('/loadOrderFulfilled', [
         'as' => 'loadOrderFulfilled',
         'uses' => 'OrderController@loadOrderFulfilled',
     ]);
 
-    // Вывод данных по определённому заказу
+    // Вывод данных по определенному заказу
     Route::get('/getOrder/{id}', [
         'as' => 'getOrder',
         'uses' => 'OrderController@getOrder',
     ]);
 
 
-    // Вывод списка партнёров
+    // Вывод списка партнеров
     Route::get('/getPartnersList', [
         'as' => 'getPartnersList',
         'uses' => 'PartnersController@getPartnersList',
@@ -75,7 +75,7 @@ Route::group(['prefix' => '/v1', 'as' => 'api.*', 'namespace' => 'Api\v1'], func
         'uses' => 'ProductController@updateProduct',
     ]);
 
-    // Вывести погоду в бренске
+    // Вывести погоду в Брянске
     Route::get('/getWeather', [
         'as' => 'getWeather',
         'uses' => 'WeatherController@index',

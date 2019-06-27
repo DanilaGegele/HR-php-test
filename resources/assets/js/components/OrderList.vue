@@ -6,7 +6,7 @@
                     <th scope="col">#</th>
                     <th scope="col">название партнера</th>
                     <th scope="col">стоимость заказа</th>
-                    <th scope="col">наименование состав заказа</th>
+                    <th scope="col">наименование состава заказа</th>
                     <th scope="col">статус заказа</th>
                 </tr>
             </thead>
@@ -77,7 +77,7 @@
                 let productsList = '';
                 products.forEach(function(element, index) {
                     productsList = productsList + element.name;
-                    if(index < products.length) {
+                    if(index < products.length-1) {
                         productsList = productsList + ',';
                     }
                 });

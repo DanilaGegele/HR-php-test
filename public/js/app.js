@@ -49040,7 +49040,7 @@ exports = module.exports = __webpack_require__(13)(false);
 
 
 // module
-exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
+exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
 
 // exports
 
@@ -49111,6 +49111,8 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
@@ -49126,7 +49128,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             var _this = this;
 
             /**
-             * Загрузить данные по определённому заказу
+             * Загрузить данные по определенному заказу
              */
             axios.get('/api/v1/getWeather/').then(function (response) {
                 _this.weather = response.data;
@@ -49161,13 +49163,12 @@ var render = function() {
                   "router-link",
                   {
                     staticClass: "nav-item",
-                    attrs: { "active-class": "active", to: "/" }
+                    attrs: { "active-class": "active", tag: "li", to: "/" }
                   },
                   [
-                    _c("span", { staticClass: "active-item-here" }),
-                    _c("i", { staticClass: "fa fa-dashboard mr-5" }),
-                    _vm._v(" "),
-                    _c("span", [_vm._v("Список заказов")])
+                    _c("a", { staticClass: "nav-link" }, [
+                      _vm._v("Список заказов")
+                    ])
                   ]
                 ),
                 _vm._v(" "),
@@ -49175,25 +49176,26 @@ var render = function() {
                   "router-link",
                   {
                     staticClass: "nav-item",
-                    attrs: { "active-class": "active", to: "/editProduct" }
+                    attrs: {
+                      "active-class": "active",
+                      tag: "li",
+                      to: "/editProduct"
+                    }
                   },
                   [
-                    _c("span", { staticClass: "active-item-here" }),
-                    _c("i", { staticClass: "fa fa-dashboard mr-5" }),
-                    _vm._v(" "),
-                    _c("span", [_vm._v("Список продуктов")])
+                    _c("a", { staticClass: "nav-link" }, [
+                      _vm._v("Список продуктов")
+                    ])
                   ]
                 )
               ],
               1
             ),
             _vm._v(" "),
-            _c("div", { staticClass: "text-right" }, [
-              _vm._v(
-                "\n                    Температура в Брянске " +
-                  _vm._s(_vm.weather) +
-                  "\n                "
-              )
+            _c("div", { staticClass: "text-right nav-link" }, [
+              _c("span", { staticClass: "nav-link" }, [
+                _vm._v("Температура в Брянске " + _vm._s(_vm.weather) + " ")
+              ])
             ])
           ]
         )
@@ -49402,7 +49404,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
     methods: {
         /**
-         * Загрузка данных для вкладки заказов
+         * Загрузка данных для вкладки список заказов
          *
          * @param type
          **/
@@ -49421,7 +49423,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         },
 
         /**
-         * Измениние пагинации
+         * Изменение пагинации
          *
          * @param page
          */
@@ -49617,7 +49619,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             var productsList = '';
             products.forEach(function (element, index) {
                 productsList = productsList + element.name;
-                if (index < products.length) {
+                if (index < products.length - 1) {
                     productsList = productsList + ',';
                 }
             });
@@ -49685,7 +49687,7 @@ var staticRenderFns = [
         _c("th", { attrs: { scope: "col" } }, [_vm._v("стоимость заказа")]),
         _vm._v(" "),
         _c("th", { attrs: { scope: "col" } }, [
-          _vm._v("наименование состав заказа")
+          _vm._v("наименование состава заказа")
         ]),
         _vm._v(" "),
         _c("th", { attrs: { scope: "col" } }, [_vm._v("статус заказа")])
@@ -50072,7 +50074,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
                 20: 'завершен'
             },
             message: '',
-            partnersList: {}, // список портнёров
+            partnersList: {}, // список партнеров
             totalSum: 0,
             error: {}
         };
@@ -50116,7 +50118,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             return total;
         },
         /**
-         * Вывести ошибку по соотвествующиму полю
+         * Вывести ошибку по соотвествующему полю
          *
          * @param index
          * @return {boolean}
@@ -50131,14 +50133,14 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             var _this2 = this;
 
             /**
-             * Загрузить данные по определённому заказу
+             * Загрузить данные по определенному заказу
              */
             __WEBPACK_IMPORTED_MODULE_0_axios___default.a.get('/api/v1/getOrder/' + this.$route.params.id).then(function (response) {
                 _this2.orderData = response.data;
             });
 
             /**
-             * Загрузить список партнёров
+             * Загрузить список партнеров
              */
             __WEBPACK_IMPORTED_MODULE_0_axios___default.a.get('/api/v1/getPartnersList').then(function (response) {
                 _this2.partnersList = response.data;
@@ -50161,7 +50163,7 @@ var render = function() {
         _c("div", { staticClass: "panel panel-default" }, [
           _c("div", { staticClass: "panel-heading" }, [
             _c("h1", [
-              _vm._v("Редактировния заказа " + _vm._s(_vm.$route.params.id))
+              _vm._v("Редактирование заказа " + _vm._s(_vm.$route.params.id))
             ])
           ]),
           _vm._v(" "),
@@ -50230,7 +50232,7 @@ var render = function() {
                   _vm._v(" "),
                   _c("div", { staticClass: "form-group" }, [
                     _c("label", { attrs: { for: "partnersItem" } }, [
-                      _vm._v("Партнёр")
+                      _vm._v("Партнер")
                     ]),
                     _vm._v(" "),
                     _c(
@@ -50408,7 +50410,7 @@ var render = function() {
                   _c("span", { staticClass: "active-item-here" }),
                   _c("i", { staticClass: "fa fa-dashboard mr-5" }),
                   _vm._v(" "),
-                  _c("span", [_vm._v(" Вернуться к списоку заказов")])
+                  _c("span", [_vm._v(" Вернуться к списку заказов")])
                 ]
               )
             ],
@@ -50737,7 +50739,7 @@ var render = function() {
                                 }
                               }
                             },
-                            [_vm._v("Сохронить")]
+                            [_vm._v("Сохранить")]
                           )
                         ])
                       ])
@@ -50768,9 +50770,9 @@ var staticRenderFns = [
       _c("tr", [
         _c("th", { attrs: { scope: "col" } }, [_vm._v("#")]),
         _vm._v(" "),
-        _c("th", { attrs: { scope: "col" } }, [_vm._v("Названия продукта")]),
+        _c("th", { attrs: { scope: "col" } }, [_vm._v("Название продукта")]),
         _vm._v(" "),
-        _c("th", { attrs: { scope: "col" } }, [_vm._v("Названия поставщика")]),
+        _c("th", { attrs: { scope: "col" } }, [_vm._v("Название поставщика")]),
         _vm._v(" "),
         _c("th", { attrs: { scope: "col" } }, [_vm._v("Цена")]),
         _vm._v(" "),

@@ -5,18 +5,20 @@
                 <div class="collapse navbar-collapse" id="navbarNavDropdown">
                     <ul class="navbar-nav">
                             <router-link class="nav-item"
-                                        active-class="active"
+                                         active-class="active"
+                                         tag="li"
                                          to="/">
-                                <span class="active-item-here"></span><i class="fa fa-dashboard mr-5"></i> <span>Список заказов</span>
+                                <a class="nav-link">Список заказов</a>
                             </router-link>
                             <router-link class="nav-item"
-                                     active-class="active"
-                                     to="/editProduct">
-                                <span class="active-item-here"></span><i class="fa fa-dashboard mr-5"></i> <span>Список продуктов</span>
+                                         active-class="active"
+                                         tag="li"
+                                         to="/editProduct">
+                                <a class="nav-link">Список продуктов</a>
                             </router-link>
                     </ul>
-                    <div class="text-right">
-                        Температура в Брянске {{weather}}
+                    <div class="text-right nav-link">
+                        <span class="nav-link">Температура в Брянске {{weather}} </span>
                     </div>
                 </div>
             </nav>
@@ -38,7 +40,7 @@
         mounted() {
             this.$nextTick(function () {
                 /**
-                 * Загрузить данные по определённому заказу
+                 * Загрузить данные по определенному заказу
                  */
                 axios.get('/api/v1/getWeather/')
                     .then(response => {

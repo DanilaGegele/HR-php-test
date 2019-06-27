@@ -32,7 +32,7 @@ class UpdateOrderTest extends TestCase
     }
 
     /**
-     * Проврка вывода конкретного заказа
+     * Проверка вывода конкретного заказа
      *
      * @return void
      */
@@ -45,7 +45,7 @@ class UpdateOrderTest extends TestCase
     }
 
     /**
-     * Обновления данных в заказе
+     * Обновление данных в заказе
      *
      * @return void
      */
@@ -68,7 +68,7 @@ class UpdateOrderTest extends TestCase
     }
 
     /**
-     * Тест проверки вывода списка партнёров
+     * Тест проверки вывода списка партнеров
      */
     public function testGetPartnersList()
     {

@@ -34,7 +34,7 @@ class OrderController extends Controller
     }
 
     /**
-     * Вывести просроченные
+     * Вывести просроченные заказы
      *
      * @return \Illuminate\Http\JsonResponse
      */
@@ -52,7 +52,7 @@ class OrderController extends Controller
 
 
     /**
-     * Вывести текущие
+     * Вывести текущие заказы
      *
      * @return \Illuminate\Http\JsonResponse
      */
@@ -69,7 +69,7 @@ class OrderController extends Controller
     }
 
     /**
-     * Вывести новые
+     * Вывести новые заказы
      *
      * @return \Illuminate\Http\JsonResponse
      */
@@ -86,7 +86,7 @@ class OrderController extends Controller
     }
 
     /**
-     * Вывести выполненые
+     * Вывести выполненые заказы
      *
      * @return \Illuminate\Http\JsonResponse
      */
@@ -103,7 +103,7 @@ class OrderController extends Controller
     }
 
     /**
-     * Вывести данные определённого
+     * Вывести данные определенного заказа
      *
      * @param int $id
      * @return \Illuminate\Http\JsonResponse
@@ -116,6 +116,13 @@ class OrderController extends Controller
         return response()->json($orderList);
     }
 
+    /**
+     * Обновить данные заказа
+     *
+     * @param int $id
+     * @param OrderRequest $orderRequest
+     * @return \Illuminate\Contracts\Routing\ResponseFactory|\Symfony\Component\HttpFoundation\Response
+     */
     public function updateOrder(int $id, OrderRequest $orderRequest)
     {
         $this->orderList->updateOrder($id,$orderRequest->toArray());

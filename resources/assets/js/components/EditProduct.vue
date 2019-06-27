@@ -14,8 +14,8 @@
                                 <thead>
                                 <tr>
                                     <th scope="col">#</th>
-                                    <th scope="col">Названия продукта</th>
-                                    <th scope="col">Названия поставщика</th>
+                                    <th scope="col">Название продукта</th>
+                                    <th scope="col">Название поставщика</th>
                                     <th scope="col">Цена</th>
                                     <th scope="col"></th>
                                 </tr>
@@ -26,7 +26,7 @@
                                     <td>{{item.name}}</td>
                                     <td>{{item.vendor.name}}</td>
                                     <td><input v-model="item.price" class="form-control" type="number"></td>
-                                    <td><b @click="updateProduct(item)">Сохронить</b></td>
+                                    <td><b @click="updateProduct(item)">Сохранить</b></td>
                                 </tr>
                                 </tbody>
                             </table>

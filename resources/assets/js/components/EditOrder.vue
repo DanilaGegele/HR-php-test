@@ -4,7 +4,7 @@
             <div class="col-md-8 col-md-offset-2">
                 <div class="panel panel-default">
                     <div class="panel-heading">
-                        <h1>Редактировния заказа {{ $route.params.id }}</h1>
+                        <h1>Редактирование заказа {{$route.params.id}}</h1>
                     </div>
                     <div class="panel-body">
 
@@ -22,7 +22,7 @@
                                        v-if="getError('client_email')">{{getError('client_email')}}</small>
                             </div>
                             <div class="form-group">
-                                <label for="partnersItem">Партнёр</label>
+                                <label for="partnersItem">Партнер</label>
                                 <select v-model="orderData.partner_id" class="form-control" id="partnersItem">
                                       <option v-for="partnersItem in partnersList"
                                               v-bind:value="partnersItem.id">{{partnersItem.name}}</option>
@@ -74,7 +74,7 @@
                         </form>
                         <router-link class="nav-item"
                                      to="/">
-                            <span class="active-item-here"></span><i class="fa fa-dashboard mr-5"></i> <span> Вернуться к списоку заказов</span>
+                            <span class="active-item-here"></span><i class="fa fa-dashboard mr-5"></i> <span> Вернуться к списку заказов</span>
                         </router-link>
                     </div>
                 </div>
@@ -96,7 +96,7 @@
                     20: 'завершен'
                 },
                 message: '',
-                partnersList: {}, // список портнёров
+                partnersList: {}, // список партнеров
                 totalSum: 0,
                 error: {}
             }
@@ -137,7 +137,7 @@
                 return total
             },
             /**
-             * Вывести ошибку по соотвествующиму полю
+             * Вывести ошибку по соотвествующему полю
              *
              * @param index
              * @return {boolean}
@@ -151,7 +151,7 @@
         mounted() {
             this.$nextTick(function () {
                 /**
-                 * Загрузить данные по определённому заказу
+                 * Загрузить данные по определенному заказу
                  */
                 axios.get('/api/v1/getOrder/'+this.$route.params.id)
                     .then(response => {
@@ -159,7 +159,7 @@
                     });
 
                 /**
-                 * Загрузить список партнёров
+                 * Загрузить список партнеров
                  */
                 axios.get('/api/v1/getPartnersList')
                     .then(response => {

@@ -27,7 +27,7 @@ class ShowOrderTabsTest extends TestCase
     }
 
     /**
-     * Вывести просроченные
+     * Вывести просроченные заказы
      *
      * @return void
      */
@@ -46,7 +46,7 @@ class ShowOrderTabsTest extends TestCase
     }
 
     /**
-     * Вывести текущие
+     * Вывести текущие заказы
      *
      * @return void
      */
@@ -63,7 +63,7 @@ class ShowOrderTabsTest extends TestCase
     }
 
     /**
-     * Вывести новые
+     * Вывести новые заказы
      *
      * @return void
      */
@@ -82,7 +82,7 @@ class ShowOrderTabsTest extends TestCase
     }
 
     /**
-     * Вывести новые
+     * Вывести выполненные заказы
      *
      * @return void
      */
