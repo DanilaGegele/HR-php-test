@@ -10,9 +10,13 @@
                                 <span class="active-item-here"></span><i class="fa fa-dashboard mr-5"></i> <span>Список заказов</span>
                             </router-link>
                     </ul>
+                    <div class="text-right">
+                        Температура в Брянске + {{weather}}
+                    </div>
                 </div>
             </nav>
         </div>
+
     </header>
 </template>
 
@@ -20,8 +24,24 @@
 
 
     export default {
-
+        data(){
+            return {
+                weather: ''
+            }
+        },
         name: "menu-site",
+        mounted() {
+            this.$nextTick(function () {
+                /**
+                 * Загрузить данные по определённому заказу
+                 */
+                axios.get('/api/v1/getWeather/')
+                    .then(response => {
+                        this.weather = response.data;
+                    });
+            });
+
+        }
 
     }
 </script>

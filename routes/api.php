@@ -69,6 +69,10 @@ Route::group(['prefix' => '/v1', 'as' => 'api.*', 'namespace' => 'Api\v1'], func
         'uses' => 'OrderController@updateOrder',
     ]);
 
-
+    // Вывести погоду в бренске
+    Route::get('/getWeather', [
+        'as' => 'getWeather',
+        'uses' => 'WeatherController@index',
+    ]);
 
 });

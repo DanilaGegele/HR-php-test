@@ -49040,7 +49040,7 @@ exports = module.exports = __webpack_require__(13)(false);
 
 
 // module
-exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
+exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
 
 // exports
 
@@ -49102,12 +49102,32 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
+//
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
+    data: function data() {
+        return {
+            weather: ''
+        };
+    },
 
-    name: "menu-site"
+    name: "menu-site",
+    mounted: function mounted() {
+        this.$nextTick(function () {
+            var _this = this;
 
+            /**
+             * Загрузить данные по определённому заказу
+             */
+            axios.get('/api/v1/getWeather/').then(function (response) {
+                _this.weather = response.data;
+            });
+        });
+    }
 });
 
 /***/ }),
@@ -49147,7 +49167,15 @@ var render = function() {
                 )
               ],
               1
-            )
+            ),
+            _vm._v(" "),
+            _c("div", { staticClass: "text-right" }, [
+              _vm._v(
+                "\n                    Температура в Брянске + " +
+                  _vm._s(_vm.weather) +
+                  "\n                "
+              )
+            ])
           ]
         )
       ])
@@ -50004,6 +50032,8 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
@@ -50114,16 +50144,6 @@ var render = function() {
             "div",
             { staticClass: "panel-body" },
             [
-              _vm.message
-                ? _c("b", [
-                    _vm._v(
-                      "\n                        " +
-                        _vm._s(_vm.message) +
-                        "\n                    "
-                    )
-                  ])
-                : _vm._e(),
-              _vm._v(" "),
               _c(
                 "form",
                 {
@@ -50342,7 +50362,17 @@ var render = function() {
                       attrs: { type: "submit" }
                     },
                     [_vm._v("Submit")]
-                  )
+                  ),
+                  _vm._v(" "),
+                  _vm.message
+                    ? _c("b", [
+                        _vm._v(
+                          "\n                            " +
+                            _vm._s(_vm.message) +
+                            "\n                        "
+                        )
+                      ])
+                    : _vm._e()
                 ]
               ),
               _vm._v(" "),

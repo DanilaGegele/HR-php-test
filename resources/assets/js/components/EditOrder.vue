@@ -7,9 +7,7 @@
                         <h1>Редактировния заказа {{ $route.params.id }}</h1>
                     </div>
                     <div class="panel-body">
-                        <b  v-if="message">
-                            {{message}}
-                        </b>
+
                         <form v-on:submit.prevent="checkForm">
                             <div class="form-group">
                                 <label for="clientEmail">email клиента</label>
@@ -68,7 +66,11 @@
                             <div class="form-group">
                                 <b>Итого: {{getTotal()}}</b>
                             </div>
+
                             <button type="submit" class="btn btn-primary">Submit</button>
+                            <b  v-if="message">
+                                {{message}}
+                            </b>
                         </form>
                         <router-link class="nav-item"
                                      to="/">
