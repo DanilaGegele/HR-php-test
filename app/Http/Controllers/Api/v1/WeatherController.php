@@ -8,7 +8,19 @@ use App\Http\Controllers\Controller;
 class WeatherController extends Controller
 {
     /**
-     * Вывести пгоду брянска
+     * ключь от яндекс API
+     */
+    const KEY_API = '3337092d-2c6d-4694-9758-3a32ff244784';
+    /**
+     * координаты Брянска
+     */
+    const COORDINATES = [
+        'lat' => '53.2799469',
+        'lon' => '34.2068798'
+    ];
+
+    /**
+     * Вывести погоду брянска
      *
      * @return \Illuminate\Contracts\Routing\ResponseFactory|\Symfony\Component\HttpFoundation\Response
      */
@@ -17,17 +29,21 @@ class WeatherController extends Controller
         $opts = [
             "http" => [
                 "method" => "GET",
-                "header" => "X-Yandex-API-Key: 3337092d-2c6d-4694-9758-3a32ff244784"
+                "header" => "X-Yandex-API-Key: " . self::KEY_API
             ]
         ];
         $context = stream_context_create($opts);
 
-        $weather = @file_get_contents('https://api.weather.yandex.ru/v1/forecast?lat=53.2799469&lon=34.2068798&extra=true',
+        $weather = @file_get_contents('https://api.weather.yandex.ru/v1/forecast?lat=' . self::COORDINATES['lat'] .
+            '&lon=' . self::COORDINATES['lon'] .
+            '&extra=true',
             false,
             $context);
 
         if ($weather) {
-            $result = response(json_decode($weather)->fact->temp, 200);
+            $temp = json_decode($weather)->fact->temp;
+            $sign = $temp > 0 ? '+' : '';
+            $result = response($sign . $temp, 200);
         } else {
             $result = response('Error conect Yandex Weather', 200);
         }

@@ -11,7 +11,7 @@
                             </router-link>
                     </ul>
                     <div class="text-right">
-                        Температура в Брянске + {{weather}}
+                        Температура в Брянске {{weather}}
                     </div>
                 </div>
             </nav>

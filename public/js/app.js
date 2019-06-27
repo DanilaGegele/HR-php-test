@@ -49171,7 +49171,7 @@ var render = function() {
             _vm._v(" "),
             _c("div", { staticClass: "text-right" }, [
               _vm._v(
-                "\n                    Температура в Брянске + " +
+                "\n                    Температура в Брянске " +
                   _vm._s(_vm.weather) +
                   "\n                "
               )
