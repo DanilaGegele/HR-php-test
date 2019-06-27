@@ -63,4 +63,12 @@ Route::group(['prefix' => '/v1', 'as' => 'api.*', 'namespace' => 'Api\v1'], func
         'uses' => 'ProductController@getProductList',
     ]);
 
+    // Обновить данные заказа
+    Route::post('/updateOrder/{id}', [
+        'as' => 'updateOrder',
+        'uses' => 'OrderController@updateOrder',
+    ]);
+
+
+
 });

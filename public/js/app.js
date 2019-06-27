@@ -49937,7 +49937,73 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
-
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
@@ -49945,33 +50011,82 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
     data: function data() {
         return {
             orderData: {}, // заказ
-            productList: {}, // список продукции
-            partnersList: {} // список портнёров
+            arStatus: {
+                0: 'новый',
+                10: 'подтвержден',
+                20: 'завершен'
+            },
+            message: '',
+            partnersList: {}, // список портнёров
+            totalSum: 0,
+            error: {}
         };
+    },
+
+    methods: {
+        checkForm: function checkForm() {
+            var _this = this;
+
+            __WEBPACK_IMPORTED_MODULE_0_axios___default.a.post('/api/v1/updateOrder/' + this.$route.params.id, {
+                client_email: this.orderData['client_email'],
+                status: this.orderData['status'],
+                partner_id: this.orderData['partner_id']
+            }).then(function (response) {
+                _this.message = 'Данные заказа обновлены';
+            }).catch(function (error) {
+                _this.error = error.response.data.errors;
+            });
+        },
+        /**
+         * Вывести сумму
+         *
+         * @param productItem <array>
+         * @return {number}
+         */
+        getSum: function getSum(productItem) {
+            return productItem.pivot.quantity * productItem.price;
+        },
+        /**
+         * Вывести итоговую сумму
+         *
+         * @return {number}
+         */
+        getTotal: function getTotal() {
+            var total = 0;
+            if (this.orderData['product']) {
+                this.orderData['product'].forEach(function (element) {
+                    total += element.pivot.price * element.pivot.quantity;
+                });
+            }
+            return total;
+        },
+        /**
+         * Вывести ошибку по соотвествующиму полю
+         *
+         * @param index
+         * @return {boolean}
+         */
+        getError: function getError(index) {
+            return this.error[index] ? this.error[index][0] : false;
+        }
+
     },
     mounted: function mounted() {
         this.$nextTick(function () {
-            var _this = this;
+            var _this2 = this;
 
             /**
              * Загрузить данные по определённому заказу
              */
             __WEBPACK_IMPORTED_MODULE_0_axios___default.a.get('/api/v1/getOrder/' + this.$route.params.id).then(function (response) {
-                _this.orderData = response.data;
+                _this2.orderData = response.data;
             });
 
             /**
              * Загрузить список партнёров
              */
             __WEBPACK_IMPORTED_MODULE_0_axios___default.a.get('/api/v1/getPartnersList').then(function (response) {
-                _this.partnersList = response.data;
-            });
-
-            /**
-             * Загрузить список продуктов
-             */
-            __WEBPACK_IMPORTED_MODULE_0_axios___default.a.get('/api/v1/getProductList').then(function (response) {
-                _this.productList = response.data;
+                _this2.partnersList = response.data;
             });
         });
     }
@@ -49990,16 +50105,281 @@ var render = function() {
       _c("div", { staticClass: "col-md-8 col-md-offset-2" }, [
         _c("div", { staticClass: "panel panel-default" }, [
           _c("div", { staticClass: "panel-heading" }, [
-            _vm._v("Редактировния заказа " + _vm._s(_vm.$route.params.id))
+            _c("h1", [
+              _vm._v("Редактировния заказа " + _vm._s(_vm.$route.params.id))
+            ])
           ]),
           _vm._v(" "),
-          _c("div", { staticClass: "panel-body" })
+          _c(
+            "div",
+            { staticClass: "panel-body" },
+            [
+              _vm.message
+                ? _c("b", [
+                    _vm._v(
+                      "\n                        " +
+                        _vm._s(_vm.message) +
+                        "\n                    "
+                    )
+                  ])
+                : _vm._e(),
+              _vm._v(" "),
+              _c(
+                "form",
+                {
+                  on: {
+                    submit: function($event) {
+                      $event.preventDefault()
+                      return _vm.checkForm($event)
+                    }
+                  }
+                },
+                [
+                  _c("div", { staticClass: "form-group" }, [
+                    _c("label", { attrs: { for: "clientEmail" } }, [
+                      _vm._v("email клиента")
+                    ]),
+                    _vm._v(" "),
+                    _c("input", {
+                      directives: [
+                        {
+                          name: "model",
+                          rawName: "v-model",
+                          value: _vm.orderData.client_email,
+                          expression: "orderData.client_email"
+                        }
+                      ],
+                      staticClass: "form-control",
+                      attrs: {
+                        type: "email",
+                        id: "clientEmail",
+                        placeholder: "email клиента",
+                        required: ""
+                      },
+                      domProps: { value: _vm.orderData.client_email },
+                      on: {
+                        input: function($event) {
+                          if ($event.target.composing) {
+                            return
+                          }
+                          _vm.$set(
+                            _vm.orderData,
+                            "client_email",
+                            $event.target.value
+                          )
+                        }
+                      }
+                    }),
+                    _vm._v(" "),
+                    _vm.getError("client_email")
+                      ? _c(
+                          "small",
+                          {
+                            staticClass: "form-text text-muted has-error",
+                            attrs: { id: "emailHelp" }
+                          },
+                          [_vm._v(_vm._s(_vm.getError("client_email")))]
+                        )
+                      : _vm._e()
+                  ]),
+                  _vm._v(" "),
+                  _c("div", { staticClass: "form-group" }, [
+                    _c("label", { attrs: { for: "partnersItem" } }, [
+                      _vm._v("Партнёр")
+                    ]),
+                    _vm._v(" "),
+                    _c(
+                      "select",
+                      {
+                        directives: [
+                          {
+                            name: "model",
+                            rawName: "v-model",
+                            value: _vm.orderData.partner_id,
+                            expression: "orderData.partner_id"
+                          }
+                        ],
+                        staticClass: "form-control",
+                        attrs: { id: "partnersItem" },
+                        on: {
+                          change: function($event) {
+                            var $$selectedVal = Array.prototype.filter
+                              .call($event.target.options, function(o) {
+                                return o.selected
+                              })
+                              .map(function(o) {
+                                var val = "_value" in o ? o._value : o.value
+                                return val
+                              })
+                            _vm.$set(
+                              _vm.orderData,
+                              "partner_id",
+                              $event.target.multiple
+                                ? $$selectedVal
+                                : $$selectedVal[0]
+                            )
+                          }
+                        }
+                      },
+                      _vm._l(_vm.partnersList, function(partnersItem) {
+                        return _c(
+                          "option",
+                          { domProps: { value: partnersItem.id } },
+                          [_vm._v(_vm._s(partnersItem.name))]
+                        )
+                      }),
+                      0
+                    ),
+                    _vm._v(" "),
+                    _vm.getError("partner_id")
+                      ? _c(
+                          "small",
+                          { staticClass: "form-text text-muted has-error" },
+                          [_vm._v(_vm._s(_vm.getError("partner_id")))]
+                        )
+                      : _vm._e()
+                  ]),
+                  _vm._v(" "),
+                  _c("div", { staticClass: "form-group" }, [
+                    _c("label", { attrs: { for: "status" } }, [
+                      _vm._v("Статус")
+                    ]),
+                    _vm._v(" "),
+                    _c(
+                      "select",
+                      {
+                        directives: [
+                          {
+                            name: "model",
+                            rawName: "v-model",
+                            value: _vm.orderData.status,
+                            expression: "orderData.status"
+                          }
+                        ],
+                        staticClass: "form-control",
+                        attrs: { id: "status" },
+                        on: {
+                          change: function($event) {
+                            var $$selectedVal = Array.prototype.filter
+                              .call($event.target.options, function(o) {
+                                return o.selected
+                              })
+                              .map(function(o) {
+                                var val = "_value" in o ? o._value : o.value
+                                return val
+                              })
+                            _vm.$set(
+                              _vm.orderData,
+                              "status",
+                              $event.target.multiple
+                                ? $$selectedVal
+                                : $$selectedVal[0]
+                            )
+                          }
+                        }
+                      },
+                      _vm._l(_vm.arStatus, function(item, index) {
+                        return _c("option", { domProps: { value: index } }, [
+                          _vm._v(_vm._s(item))
+                        ])
+                      }),
+                      0
+                    ),
+                    _vm._v(" "),
+                    _vm.getError("status")
+                      ? _c(
+                          "small",
+                          { staticClass: "form-text text-muted has-error" },
+                          [_vm._v(_vm._s(_vm.getError("status")))]
+                        )
+                      : _vm._e()
+                  ]),
+                  _vm._v(" "),
+                  _c("h4", [_vm._v("Продукты")]),
+                  _vm._v(" "),
+                  _c("hr"),
+                  _vm._v(" "),
+                  _c("div", { staticClass: "table-responsive" }, [
+                    _c("table", { staticClass: "table" }, [
+                      _vm._m(0),
+                      _vm._v(" "),
+                      _c(
+                        "tbody",
+                        _vm._l(_vm.orderData.product, function(productItem) {
+                          return _c("tr", [
+                            _c("td", [
+                              _vm._v(
+                                "\n                                        " +
+                                  _vm._s(productItem.name) +
+                                  "\n                                    "
+                              )
+                            ]),
+                            _vm._v(" "),
+                            _c("td", [
+                              _vm._v(
+                                "\n                                        " +
+                                  _vm._s(productItem.pivot.quantity) +
+                                  "\n                                    "
+                              )
+                            ]),
+                            _vm._v(" "),
+                            _c("td", [_vm._v(_vm._s(_vm.getSum(productItem)))])
+                          ])
+                        }),
+                        0
+                      )
+                    ])
+                  ]),
+                  _vm._v(" "),
+                  _c("div", { staticClass: "form-group" }, [
+                    _c("b", [_vm._v("Итого: " + _vm._s(_vm.getTotal()))])
+                  ]),
+                  _vm._v(" "),
+                  _c(
+                    "button",
+                    {
+                      staticClass: "btn btn-primary",
+                      attrs: { type: "submit" }
+                    },
+                    [_vm._v("Submit")]
+                  )
+                ]
+              ),
+              _vm._v(" "),
+              _c(
+                "router-link",
+                { staticClass: "nav-item", attrs: { to: "/" } },
+                [
+                  _c("span", { staticClass: "active-item-here" }),
+                  _c("i", { staticClass: "fa fa-dashboard mr-5" }),
+                  _vm._v(" "),
+                  _c("span", [_vm._v(" Вернуться к списоку заказов")])
+                ]
+              )
+            ],
+            1
+          )
         ])
       ])
     ])
   ])
 }
-var staticRenderFns = []
+var staticRenderFns = [
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("thead", [
+      _c("tr", [
+        _c("th", { attrs: { scope: "col" } }, [_vm._v("Название продукта")]),
+        _vm._v(" "),
+        _c("th", { attrs: { scope: "col" } }, [_vm._v("кол-во")]),
+        _vm._v(" "),
+        _c("th", { attrs: { scope: "col" } }, [_vm._v("стоимость")])
+      ])
+    ])
+  }
+]
 render._withStripped = true
 module.exports = { render: render, staticRenderFns: staticRenderFns }
 if (false) {

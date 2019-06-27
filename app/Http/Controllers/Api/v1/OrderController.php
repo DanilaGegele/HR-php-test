@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Api\v1;
 
 use App\Container\OrderList;
+use App\Http\Requests\OrderRequest;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Container\Container;
@@ -113,5 +114,13 @@ class OrderController extends Controller
             ->findOrderList($id);
 
         return response()->json($orderList);
+    }
+
+    public function updateOrder(int $id, OrderRequest $orderRequest)
+    {
+        $this->orderList->updateOrder($id,$orderRequest->toArray());
+
+        return response('OK!!!', 200);
+
     }
 }
